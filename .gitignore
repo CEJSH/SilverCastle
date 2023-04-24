@@ -1,0 +1,44 @@
+# .gitignore
+.ftpconfig
+
+# environment files
+.env
+
+## c programing
+c/**/a.out
+c/**/hello
+c/**/*.o
+c/**/test
+
+## java
+
+java/*.class
+
+## scala
+scala/**/project
+scala/**/target
+
+## maven
+maven/target
+
+## nodejs
+node_modules
+**package-lock.json
+/c/onfig/pool.js
+
+## python
+.venv
+__pycache__/
+
+## mongodb
+mongodb/*.json
+mongodb/**/*.json
+mongodb/**/*.mp4
+mongodb/backup
+
+## oracle
+oracle/node/dbConfig.js
+oracle/node/node_modules
+oracle/node/package-lock.json
+
+## html
