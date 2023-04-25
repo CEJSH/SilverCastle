@@ -1,0 +1,177 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog Example</title>
+    <style>
+      :modal {
+        /*:modal은 모달 상태의 대화상자 박스에 대한 선택자이다. 비모달 대화상자는 dialog 태그 선택자로 정의가 가능하다. */
+        border: none;
+        padding: 0;
+      }
+      :modal form {
+        /* 모달 안에 있는 서식 컨테이너를 grid로 만들겁니다. 3개의 행을 가지며, 각 행은, header, body, bottom 영역으로 나뉩니다.*/
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+      :modal form > * {
+        /* 서식 컨테이너 바로 아래에 있을 각 row에 padding 여백을 주어서 보기 시원한 디자인을 만듭니다. */
+        box-sizing: border-box;
+        padding: 0.5em;
+      }
+
+      :modal .header {
+        /* header에는 display를 flex로 주고, 안에 있는 모든 내용이 옆으로 달라붙도록 합니다. */
+        display: flex;
+      }
+      :modal .header > .tit {
+        flex: 1; /*class="tit"은 타이틀 텍스트 요소입니다. flex:1;을 주면, 이 요소가 주변 요소가 있는 자리를 침범하지 않고 .header의 대부분을 차지합니다. */
+      }
+      :modal .body {
+        min-height: 150px; /* 최소 세로 넓이를 150픽셀로 줘서 너무 작은 대화상자가 나오는 것을 방지합니다. */
+      }
+
+      :modal .bottom {
+        display: flex;
+        justify-content: end; /* bottom 영역 역시 display:flex;를 줘서 가로로 정렬되게 합니다. bottom에는 대화상자 내에 있는 버튼을 넣을겁니다. 오른쪽에 버튼이 나타나길 원하니, justify-content를 end로 줍니다.*/
+      }
+
+      :modal button {
+        /* 버튼 스타일을 무력화합니다. */
+        appearance: none;
+        border: none;
+        background-color: transparent;
+        font-weight: bold;
+      }
+      :modal #negative.default {
+        /* 부정적인 답변에 대한 버튼이 .default이면 부정답변 버튼의 텍스트를 빨강색으로 표시 */
+        color: red;
+      }
+
+      :modal #postive.default {
+        /* 긍정적인 답변에 대한 버튼이 .default면 긍정 답변 버튼의 텍스트를 파란색으로 표시*/
+        color: #2264ff;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btnOpen" aria-haspopup="dialog">Open Greeting Dialog.</button>
+    <p id="message" aria-live="assertive"></p>
+    <!--결과값을 여기다가 표시할 겁니다.-->
+    <dialog
+      id="myDialog"
+      aria-labelledby="wyn_title"
+      aria-describedby="wyn_desc"
+    >
+      <!--대화상자를 만듭니다. 대화상자에 스크린리더가 접근하면, 대화상자 타이틀과 메시지를 안내하도록 aria-labelledby와 describedby를 활용해 줍니다.-->
+      <form method="dialog">
+        <!--form의 새로운 method, dialog값은 대화상자 내에서 form이 전송되었을 때에 대한 동작을 얘기합니다.-->
+        <div class="header">
+          <strong id="wyn_title" class="tit">What's your name?</strong
+          ><button id="btnClose" aria-label="close" value="cancel">X</button>
+        </div>
+        <!--제목 표시줄과 닫기 버튼입니다.-->
+        <div class="body">
+          <p id="wyn_desc">
+            Hello, Nice to meet you, I'm a cool native dialog for everyone. I
+            wanna know your name, could you tell me your name?
+          </p>
+          <!--대화상자 내부에 표시될 질문 내용입니다.-->
+          <div>
+            <label for="typeName">
+              My name is
+              <input type="text" name="typeName" id="typeName" autofocus />.
+              <!-- 이름을 입력할 텍스트 입력란을 넣어줍니다. 대화상자가 나타나면 바로 입력할 수 있도록, autofocus를 걸어줍니다. -->
+            </label>
+          </div>
+        </div>
+        <div class="bottom">
+          <button id="negative" name="negative" type="submit" value="negative">
+            Answer Later
+          </button>
+          <!-- 부정버튼과 긍정버튼을 만듭니다. value값은 해당 버튼이 눌려 대화상자가 닫혔을 때 반환되는 값입니다.-->
+          <button
+            class="default"
+            name="postive"
+            type="submit"
+            id="postive"
+            value="postive"
+          >
+            Answer Now
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <script>
+      // <dialog> 예제. 러프하게 그냥 script 태그에 인라인으로 작성해볼게요.
+
+      const dialog = document.querySelector("dialog#myDialog"); // dialog 태그를 dialog 상수에 담음.
+      const message = document.querySelector("#message"); // message 상수에 대화상자가 닫혔을 때 쓰일 결과를 표시할 영역 p#message 태그를 가져옴.
+
+      // 구조 분해 할당, 변수 선언 키워드인 const나 let을 쓰고, 배열 형식으로 이름을 작성하고, 배열 수에 맞게, 배열 순서에 원하는 값을 넣어 대입
+      const [btnOpen, btnClose, btnAnswerNegative, btnAnswerPostive, typeName] =
+        [
+          document.querySelector("#btnOpen"), // btnOpen에 담김 (body button#btnOpen)
+          document.querySelector("#btnClose"), // btnClose에 담김 (dialog button#btnClose)
+          document.querySelector("#negative"), // btnAnswerNegative에 담김 (dialog button#negative)
+          document.querySelector("#postive"), // btnAnswerPostive에 담김 (dialog button#postive)
+          document.querySelector("#typeName"), // typeName에 담김 (input#typeName)
+        ];
+
+      // 여는 함수 / 닫는 함수, 굳이 안 만들어도 되지만 조금 더 타이핑을 줄이기 위해...
+      function close() {
+        dialog.close();
+      }
+      function show() {
+        dialog.showModal();
+      }
+
+      // 여는 이벤트 구현
+      // HTMLDialogElement.show()로 열면 비모달 대화상자, HTMLDialogElement.showModal()로 열면 모달 대화상자가 열림. show()함수에 showModal() 메소드가 사용됨
+      btnOpen.addEventListener("click", function () {
+        show();
+      });
+
+      // X 버튼을 눌러 닫으면
+      btnClose.addEventListener("click", function () {
+        close(); // close 버튼이 눌리면 닫는 함수 동작.
+      });
+
+      // 편집창 값 바뀔 때 긍정 버튼의 value 속성을 바꿔서 반환시킨다.
+      typeName.addEventListener("keydown", function (evt) {
+        // typeName 입력 서식에서 키보드 이벤트를 수신, 함수의 evt 인수는 이벤트 객체를 의미함. 키값을 인식하거나, 이벤트 기본값을 제거하거나 할 때 참조해야 하기 때매 필요함.
+        switch (
+          evt.code // evt.code 값을 참조
+        ) {
+          case "Enter": // evt.code의 반환값이 "Enter" 스트링이면,
+            evt.preventDefault(); //preventDefault로 기본 키 동작을 무시
+            dialog.querySelector(".default").click(); // Enter가 눌리면 dialog의 기본 응답 동작을 무시하고, default 클래스가 부여된 버튼이 눌리도록함.
+            break;
+        }
+      });
+
+      dialog.addEventListener("close", function () {
+        // dialog가 닫혔을 때에 대한 Event
+        switch (dialog.returnValue) {
+          case "cancel":
+            return false; // Cancel이면 아무 동작이 없음.
+          case "negative": // 부정적인 답변을 하면, 아래 메시지를 뱉음.
+            message.innerHTML = "Come again anytime if you're possible.";
+            break;
+          case "postive": // 긍정적인 답변을 하면 input 값을 반환하며 닫힘.
+            dialog.returnValue = typeName.value; //postive 값의 버튼이 눌리면,
+            if (dialog.returnValue) {
+              // returnValue값(이름을 묻는 input 값)이 비어 있지 않다면
+              message.innerHTML = `Hello, ${dialog.returnValue} :)`;
+            } else {
+              // returnValue값(이름을 묻는 input 값)이 비어있다면,
+              message.innerHTML =
+                "Are you really have no name? If you are not, you don't want to tell me your name?";
+            }
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SC 항공 회원가입페이지</title>
+    <link type="text/css" rel="stylesheet" href="mystyle.css" />
+  </head>
+
+  <body>
+    <h1>회원가입</h1>
+    <hr />
+    <div>
+      <form action="/test">
+        <label for="id">ID : </label>
+        <input type="text" size="13" name="id" placeholder="ID" />
+        <input type="button" onclick="" value="중복체크" /><br />
+        <label for="pw">PW : </label>
+        <input
+          type="password"
+          name="pw"
+        /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="password" name="pw_check" /><br />
+        <label for="name">이름 : </label>
+        <input type="text" name="name" /><br />
+        <label for="birth">생년원일 : </label>
+        <input type="text" name="birth" placeholder="YYYYMMDD" /><br />
+        <label for="phone">전화번호 : </label>
+        <input type="tel" name="phone" /><br />
+        <label for="addr">주소 : </label>
+        <input type="text" name="addr" /><br />
+        <label for="email">이메일 : </label>
+        <input type="email" name="email" placeholder="0123" />
+        <label for="pnum">여권번호 : </label>
+        <input type="text" name="pnum" />
+        <input type="button" value="조회" onclick="" /><br />
+        <input
+          type="submit"
+          value="회원가입"
+          onclick="this.form.action='/test'"
+        />
+      </form>
+    </div>
+  </body>
+</html>
+

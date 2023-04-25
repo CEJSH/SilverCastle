@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        User Athentication
+    </title>
+    <link type="text/css" rel="stylesheet" href="mystyle.css" />
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="box1"><a>Home</a></div>
+        <div class="box2"><a href="/AboutMe.html">AboutMe</a></div>
+        <div class="box3" onclick="remove()" style="cursor:pointer"><a>Logout</a></div>
+    </div>
+    <iframe name="targetURL" width="100%" height=1000px style="border:none;" src="main.html" width="100vw" height="100vh"></iframe>
+</body>
+<script>
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null
+            ? ""
+            : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    function sessionStore() {
+        let id = getParameter("id");
+        let now = new Date();
+        if (!window.sessionStorage) {
+            alert("세션 스토리지를 지원하지 않습니다.");
+            return;
+        }else if (id in sessionStorage){
+            return;
+        }else if (!id){
+            alert("잘못된 접근입니다.");
+            location.href = "/index.html";
+        }else {
+        sessionStorage.setItem(id, now);
+        alert(`사용자 ${id} 님이 로그인하셨습니다.`);
+    }}
+    function remove(){             
+            let con = confirm("로그아웃하시겠습니까?");
+            if (con == true) {
+                    location.href = "/index.html";         
+        let id = getParameter("id"); 
+        sessionStorage.removeItem(id);
+        alert(`사용자 ${id} 세션 스토리지 삭제`);
+            }}
+            </script>
+
+<body onload="sessionStore()">
+</html>

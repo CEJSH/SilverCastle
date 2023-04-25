@@ -1,0 +1,5 @@
+use test;
+db.flight.drop();
+mongoimport --db test --collection flight --type csv --headerline --file /data/monday.csv;
+
+db.flight.find();

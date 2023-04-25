@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        User Athentication
+    </title>
+    <link type="text/css" rel="stylesheet" href="mystyle.css" />
+</head>
+<body>
+    <h2>User Authentication</h2>
+    <hr>
+    <div id="wrap"><div class="box3" onclick="remove()" style="cursor:pointer"><a>Logout</a></div></div>
+    <div class="box">
+    <form action="/insert2" target ="targetURL" name="userForm" method="post">
+        <p>id : <input type="text" size="15" name="id" /></p>
+        <p>Password : <input type="password" size="15" name="pw" /></p>
+
+        <input type="button" value="get select"
+        onclick='document.targetURL.location.href="/select"'/>
+        <input type="button" value="get selectQuery"
+        onclick='document.targetURL.location.href="/selectQuery?id="+document.userForm.id.value'/>
+        &nbsp;
+        <input type="submit" formaction="insert" value="post insert" />
+        <button type="submit" formaction="/update">post update</button>&nbsp;
+        <button type="submit" formaction="/delete">post delete</button>
+
+    </form></div>
+    <hr>
+    <iframe name="targetURL"
+        width="70%" 
+        height="500" 
+        style="border:none;"
+        src ="/hello"></iframe>
+        
+</body>
+<script>
+  
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null
+            ? ""
+            : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    function sessionStore() {
+        let id = getParameter("id");
+        let now = new Date();
+        if (!window.sessionStorage) {
+            alert("세션 스토리지를 지원하지 않습니다.");
+            return;
+        } else {
+            if
+         (id in sessionStorage) {
+            return;
+        } else if (!id) {
+                alert("잘못된 접근입니다.");
+                location.href = "/index.html";
+        } else{
+            sessionStorage.setItem(id, now);
+        alert(`${id} 님이 로그인하셨습니다.`);}
+        
+    }}
+    function remove() {
+            let con = confirm("로그아웃하시겠습니까?");
+        if (con == true) {
+            location.href = "/index.html";
+            let id = getParameter("id");
+            sessionStorage.removeItem(id);
+            alert(`사용자 ${id} 세션 스토리지 삭제`);
+        }}
+
+    ;
+
+    </script>
+</script>
+
+<body onload="sessionStore()">
+</html>
