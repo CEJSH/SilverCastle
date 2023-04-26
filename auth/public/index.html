@@ -32,14 +32,11 @@
 
             <input type="date" id="start" name="trip-start"
           value="2023-04-24"
-          min="2023-01-01" max="23-05-31">
-          
-          <input type="date" id="start" name="trip-finish"
-          value="2023-04-24"
-          min="2023-01-01" max="23-05-31">
+          min="2023-04-24" max="23-04-30">
+
       </div>
-      <button type="submit" onclick='document.location.href="/selectQuery?depart="+document.getElementById("book_code1").innerText+
-      "&arrive="+document.getElementById("book_code2").innerText'>검색</button>
+      <button type="submit" onclick='document.location.href="/search?depart="+document.getElementById("book_code1").innerText+
+      "&arrive="+document.getElementById("book_code2").innerText+"&date="+document.getElementById("start").value'>검색</button>
 
 
 
@@ -78,7 +75,7 @@
         </div>
         <div class="bottom">
           <button id="negative" name="negative" type="submit" value="negative">
-            Answer Later
+            나중에~
           </button>
           <!-- 부정버튼과 긍정버튼을 만듭니다. value값은 해당 버튼이 눌려 대화상자가 닫혔을 때 반환되는 값입니다.-->
           <button
@@ -88,7 +85,7 @@
             id="postive"
             value="postive"
           >
-            Answer Now
+            입력
           </button>
         </div>
       </form>
@@ -121,7 +118,7 @@
         </div>
         <div class="bottom">
           <button id="negative" name="negative" type="submit" value="negative">
-            Answer Later
+            나중에~
           </button>
           <!-- 부정버튼과 긍정버튼을 만듭니다. value값은 해당 버튼이 눌려 대화상자가 닫혔을 때 반환되는 값입니다.-->
           <button
@@ -131,7 +128,7 @@
             id="postive"
             value="postive"
           >
-            Answer Now
+            입력
           </button>
         </div>
       </form>
