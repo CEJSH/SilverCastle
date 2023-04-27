@@ -1,184 +1,233 @@
-div.box {
-    background: rgba(136, 136, 90, 0.109);
-    border: thick dotted #bcbcbc;
-    border-radius: 25px;
-    margin: 100px;
-    border-width: 5px;
-    padding: 35px;
-    width: 350px;
-    height: 180px;
-
+:root {
+    --accent-color: #f3ff87;
+    --text-color: #f0f4f5;
+    --background-color: #00256c;
 }
 
-div.inner {
-
-    margin: 10px;
-    border-width: 5px;
-    padding-top: 20px;
-    padding-bottom: 30px;
-    width: 320px;
-    height: 100px;
-
-}
-
-body {
-
-    background-color: rgb(241, 206, 234);
-    font-family: 나눔고딕;
-    font-weight: 1000;
-
-}
-
-body.index {
-
-    background-color: rgb(241, 206, 234);
-    font-family: 나눔고딕;
-    font-weight: 1000;
-    background-image: url("baby.gif");
-    background-size: 1000px 800px;
-    background-position: left center;
-}
-
-body.index2 {
-
-    background-color: rgb(241, 206, 234);
-    font-family: 나눔고딕;
-    font-weight: 1000;
-    background-image: url("3.jpg");
-    background-size: 600px 700px;
-    background-position: left center;
-    
-}
-
-h2 {
-    color: rgba(159, 3, 146, 0.63);
-    font-size:25px;
-    font : bold monosapce, sans-serif;
-    margin-left:30px;
-}
-
-hr {
-    border: 5px solid rgb(245, 244, 178);
-
-}
-
-input {
-    color: rgba(159, 3, 146, 0.63);
-    font-size: 17px;
-    border:none;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin:5px;
-}
-
-input[type=text] {
-
-    background-color: rgb(239, 247, 210);
-}
-
-input[type=password] {
-
-    background-color: rgb(239,
-            247,
-            210);
-}
-
-button {
-    color: rgba(159, 3, 146, 0.63);
-    font-size: 17px;
-    border : none;
-    font-weight:bold;
-    border-radius: 5px;
-    cursor:pointer;
+.body {
+    margin: 0;
+    font-family: 'Montserrat';
 }
 
 a {
-    font-size: 17px;
-}
-
-form {
-    text-align: center;
-    border-radius: 15px;
-    border: 15px sold white;
-
-}
-
-#menubar {
-    background: rgb(245, 244, 178);
-}
-
-#menubar ul {
-    /* 여백과 패딩 모두 0 */
-    margin: 0;
-    padding: 0;
-    width: 567px;
-    /* 모든 아이템(<li>)을 한 줄에 품을 수 있는 폭 */
-}
-
-#menubar ul li {
-    display: inline-block;
-    /* 새 줄로 넘어가지 않게 */
-    list-style-type: none;
-    /* 마커 삭제 */
-    padding: 0px 15px;
-    /* top=bottom=0, left=right=15px */
-}
-
-#menubar ul li a {
-    color: rgba(159, 3, 146, 0.63);
     text-decoration: none;
-    /* 링크 보이지 않게 */
+    color: var(--text-color);
 }
 
-#menubar ul li a:hover {
-    color: violet;
-    /* 마우스 올라 갈 때 색 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 8px 12px;
 }
 
-#wrap > div {
-    display: inline-block;
+.nav_logo {
+    font-size: 24px;
+    color: var(--text-color);
 }
-div .box1 {
-    margin-left : 10px;
+
+.nav_logo i {
+    color: var(--accent-color);
 }
-div .box3{
-    margin-right : 10px;
-    float : right;
+
+.nav_logo span {
+    color: var(--accent-color);
+}
+
+.nav_menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav_menu li {
+    padding: 8px 12px;
+}
+
+.nav_menu li:hover {
+    color: var(--background-color);
+    background-color: var(--accent-color);
+    border-radius: 4px;
+}
+
+.nav_menu li a:hover {
+    color: var(--background-color);
+}
+
+.nav_icons {
+    display: flex;
+    color: #7dc0ff;
+    list-style: none;
+    padding-left: 0;
+}
+
+.nav_icons li {
+    padding: 8px 5px;
+}
+
+.navbar_toggleBtn {
+    display: none;
+    color: var(--text-color);
+    position: absolute;
+    right: 50px;
+    font-size: 30px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.greeting {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 table {
-    border-style: none;
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-td,
+th, td {
+  text-align: left;
+  padding: 12px;
+}
+
 th {
-    /* 모든 셀에 적용 */
-    text-align: left;
-    padding: 5px;
-    height: 15px;
-    width: 100px;
-    border-color: aliceblue;
-
+  background-color: #0077b6;
+  color: #fff;
 }
 
-thead,
-tfoot {
-    /* <thead>의 모든 셀에 적용 */
-    background: rgb(249, 200, 255);
-    color: yellow;
-    border-color: aliceblue;
-
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-tbody tr:nth-child(even) {
-    /* 짝수 <tr>에 적용*/
-    background: aliceblue;
-    border-color: aliceblue;
+tr:hover {
+  background-color: #c7ecee;
 }
 
-tbody tr:hover {
-    background: rgb(249, 200, 255);
-    color: white;
-    border-color: aliceblue;
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Optional: add a shadow effect to the table */
+table {
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+
+:modal {
+    /*:modal은 모달 상태의 대화상자 박스에 대한 선택자이다. 비모달 대화상자는 dialog 태그 선택자로 정의가 가능하다. */
+    border: none;
+    padding: 0;
+}
+
+:modal form {
+    /* 모달 안에 있는 서식 컨테이너를 grid로 만들겁니다. 3개의 행을 가지며, 각 행은, header, body, bottom 영역으로 나뉩니다.*/
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+:modal form>* {
+    /* 서식 컨테이너 바로 아래에 있을 각 row에 padding 여백을 주어서 보기 시원한 디자인을 만듭니다. */
+    box-sizing: border-box;
+    padding: 0.5em;
+}
+
+:modal .header {
+    /* header에는 display를 flex로 주고, 안에 있는 모든 내용이 옆으로 달라붙도록 합니다. */
+    display: flex;
+}
+
+:modal .header>.tit {
+    flex: 1;
+    /*class="tit"은 타이틀 텍스트 요소입니다. flex:1;을 주면, 이 요소가 주변 요소가 있는 자리를 침범하지 않고 .header의 대부분을 차지합니다. */
+}
+
+:modal .body {
+    min-height: 150px;
+    /* 최소 세로 넓이를 150픽셀로 줘서 너무 작은 대화상자가 나오는 것을 방지합니다. */
+}
+
+:modal .bottom {
+    display: flex;
+    justify-content: end;
+    /* bottom 영역 역시 display:flex;를 줘서 가로로 정렬되게 합니다. bottom에는 대화상자 내에 있는 버튼을 넣을겁니다. 오른쪽에 버튼이 나타나길 원하니, justify-content를 end로 줍니다.*/
+}
+
+:modal button {
+    /* 버튼 스타일을 무력화합니다. */
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+:modal #negative.default {
+    /* 부정적인 답변에 대한 버튼이 .default이면 부정답변 버튼의 텍스트를 빨강색으로 표시 */
+    color: red;
+}
+
+:modal #postive.default {
+    /* 긍정적인 답변에 대한 버튼이 .default면 긍정 답변 버튼의 텍스트를 파란색으로 표시*/
+    color: #2264ff;}
+
+button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0077b6;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.flex-container {
+    display: flex;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: SEASHELL;
+}
+
+
+button:hover {
+  background-color: #0096c7;
+}
+
+button:active {
+  background-color: #005ea8;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+}
+input {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #0077b6;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input:hover {
+    background-color: #0096c7;
+}
+
+input:active {
+    background-color: #005ea8;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
 }

@@ -3,47 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <title>항공권 예매 | SILVERCASTLE AIR</title>
-    <h2>항공권 예매</h2>
+    <link type="text/css" rel="stylesheet" href="mystyle.css" />
   </head>
   <body>
-
-      <div>
-        <ul>
-          <li>예매</li>
-        </ul>
+  <nav class="navbar">
+      <div class="nav_logo">
+        <i class="fa-solid fa-star"></i>
+        <a href="/"> SILVERCASTLE <span>AIR</span></a>
       </div>
-      <div>
-        
-        <button onclick='document.location.href="/login"'>로그인</button >
-        </div>
+      <ul class="nav_menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="">예약</a></li>
+        <li><a href="">변경</a></li>
+        <li><a href="">FQA</a></li>
+        <li><a href="http://192.168.1.80:8100/login-page">로그인</a></li>
+      </ul>
+      
+      <a href="#" class="navbar_toggleBtn">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+    </nav>
     <div>
-
-        <div>
-
-        <button id="departplacebtn" aria-haspopup="dialog" >
+       <div>
+        <div class="container">
+        <div class="item"><button id="departplacebtn" aria-haspopup="dialog" >
           <span id="book_code1">SEL</span>
-
-        </button>
-         
-        <button id="arriveplacebtn" aria-haspopup="dialog">
+        </button></div>
+                 <div class="item"><button id="arriveplacebtn" aria-haspopup="dialog">
           <span id="book_code2">CJU</span>
-
-        </button>
-
+        </button></div>
+        
             <input type="date" id="start" name="trip-start"
           value="2023-04-24"
           min="2023-04-24" max="23-04-30">
+          <div class="item">
+          <button type="submit" onclick='document.location.href="/search?depart="+document.getElementById("book_code1").innerText+
+      "&arrive="+document.getElementById("book_code2").innerText+"&date="+document.getElementById("start").value'>검색</button></div>
+      </div></div>
+      
+    <div id = "greeting">WELCOME TO SILVERCASTLE AIR!<p id="message" aria-live="assertive"></p></div>
 
+
+
+
+
+
+
+
+    
+    
       </div>
-      <button type="submit" onclick='document.location.href="/search?depart="+document.getElementById("book_code1").innerText+
-      "&arrive="+document.getElementById("book_code2").innerText+"&date="+document.getElementById("start").value'>검색</button>
-
-
-
-    <div id = "greeting">Hi!</div>
-    <p id="message" aria-live="assertive"></p>
-
-
     <!--결과값을 여기다가 표시할 겁니다.-->
 
     
@@ -214,7 +223,7 @@
           case "cancel":
             return false; // Cancel이면 아무 동작이 없음.
           case "negative": // 부정적인 답변을 하면, 아래 메시지를 뱉음.
-            message.innerHTML = "Come again anytime if you're possible.";
+            message.innerHTML = "출발지와 목적지를 입력하면 항공편 조회가 가능합니다~!";
             break;
           case "postive": // 긍정적인 답변을 하면 input 값을 반환하며 닫힘.
             departDialog.returnValue = departName.value; //postive 값의 버튼이 눌리면,
@@ -225,7 +234,7 @@
             } else {
               // returnValue값(이름을 묻는 input 값)이 비어있다면,
               message.innerHTML =
-                "Are you really have no name? If you are not, you don't want to tell me your name?";
+                "출발지를 입력 해 주세요~!!";
             }
             break;
         }
@@ -237,7 +246,7 @@
           case "cancel":
             return false; // Cancel이면 아무 동작이 없음.
           case "negative": // 부정적인 답변을 하면, 아래 메시지를 뱉음.
-            message.innerHTML = "Come again anytime if you're possible.";
+            message.innerHTML = "출발지와 목적지를 입력하면 항공편 조회가 가능합니다~!";
             break;
           case "postive": // 긍정적인 답변을 하면 input 값을 반환하며 닫힘.
             arriveDialog.returnValue = arriveName.value; //postive 값의 버튼이 눌리면,
@@ -248,7 +257,7 @@
             } else {
               // returnValue값(이름을 묻는 input 값)이 비어있다면,
               message.innerHTML =
-                "Are you really have no name? If you are not, you don't want to tell me your name?";
+                "목적지 입력 해 주세요~!";
             }
             break;
         }

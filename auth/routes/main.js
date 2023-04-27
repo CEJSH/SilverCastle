@@ -98,7 +98,8 @@ app.get("/search", function (req, res, next) {
                 if (response["result"].length <= 0) {
                   response["ok"] = "운항중인 항공편이 없습니다.";
                   console.log(response["ok"]);
-                  res.send(response["ok"]);
+                  template_nodata(res);
+                  // res.send(response["ok"]);
                   } else {
                     response["ok"] = "항공편을 조회합니다.";
                     console.log(response)
@@ -373,7 +374,7 @@ function template_nodata(res) {
         <link type="text/css" rel="stylesheet" href="mystyle.css" />
     </head>
     <body>
-        <h3>데이터가 존재하지 않습니다.</h3>
+        <h3>운항중인 항공편이 없습니다.</h3>
     </body>
     </html>
     `;
@@ -391,6 +392,25 @@ function template_result(result, res) {
         <link type="text/css" rel="stylesheet" href="mystyle.css" />
     </head>
     <body>
+    <nav class="navbar">
+      <div class="nav_logo">
+        <i class="fa-solid fa-star"></i>
+        <a href=""> SILVERCASTLE <span>AIR</span></a>
+      </div>
+      <ul class="nav_menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="">예약</a></li>
+        <li><a href="">변경</a></li>
+        <li><a href="">FQA</a></li>
+        <li><a href="/login">로그인</a></li>
+      </ul>
+      <ul class="nav_icons">
+        <li><i class="fa-brands fa-twitter"></i></li>
+      </ul>
+      <a href="#" class="navbar_toggleBtn">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+    </nav>
     <table border="1" style="margin:auto;">
     <thead>
         <tr><th>편명</th><th>Depart</th><th>DepartTime</th><th>Arrive</th><th>ArriveTime</th><th>price</th></tr>
@@ -425,6 +445,9 @@ app.get("/hello", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.redirect("login.html");
+});
+app.get("/", (req, res) => {
+  res.redirect("index.html");
 });
 
 
